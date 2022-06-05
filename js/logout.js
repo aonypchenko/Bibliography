@@ -1,4 +1,4 @@
-document.querySelector('#logout').onclick=function(){
+function logout(){
     var c=document.cookie;
     console.log(c);
     var date=new Date();
@@ -7,4 +7,12 @@ document.querySelector('#logout').onclick=function(){
     document.cookie=`${c}; expires=${expires}; path=/`;
     // location.reload();
     location.href="index.php";
+}
+
+
+function redirect_to_addpubl(){
+    location.href="php/add-publication.php";
+}
+function redirect_to_mypubl(){
+    location.href="php/my-publication.php";
 }

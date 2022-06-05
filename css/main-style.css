@@ -21,6 +21,7 @@
 .my-4 {
   margin-top: 0.5rem!important;
   margin-bottom: 1.5rem!important;
+  width: 100%;
 }
 
 .py-5 {
@@ -33,6 +34,8 @@
     flex-wrap: wrap;
     align-items: center;    
     justify-content: center;
+    align-self: center;
+    width: 100%;
 }
 
 #date_publ{
