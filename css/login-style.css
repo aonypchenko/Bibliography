@@ -1,0 +1,14 @@
+ 
+  .form-signin{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;    
+    justify-content: center;
+    margin-top: 10%;
+    width: 100%;
+  }
+
+  .form-general{
+    width: 400px;
+  }
+ 
