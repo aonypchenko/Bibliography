@@ -1,7 +1,7 @@
 <?php
 header('Content-type: application/json');
 header("Cache-Control: no-cache, must-revalidate");
-require_once "../db_connection.php";
+require_once "../php/db_connection.php";
 
 $log=$_REQUEST['email'];
 

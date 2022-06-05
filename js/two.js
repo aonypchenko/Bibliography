@@ -14,7 +14,7 @@ function loadData3(){
         date.setTime(date.getTime()+(24*3600*60*1000));
         var expires=date.toUTCString();
         document.cookie=`email=${em}; expires=${expires}; path=/`;
-        location.href="../user_session.php";
+        location.href="../php/index.php";
     }
    
     } 

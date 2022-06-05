@@ -18,7 +18,7 @@ if(!isset($_COOKIE['email']) OR trim($_COOKIE['email'])==''){
 <body class="body-style">
 
 <?php
-require_once "../header.php";
+require_once "header.php";
 ?>
 <!-- ------------------------------------- -->
 <div class="row g-5">
@@ -83,7 +83,7 @@ require_once "../header.php";
     </div>
 <!-- -------------------------------------- -->
 <?php
-require_once "../footer.php";
+require_once "footer.php";
 ?>
 <script src="../js/logout.js"></script>
 </body>

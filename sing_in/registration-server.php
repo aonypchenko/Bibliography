@@ -1,5 +1,5 @@
 <?php
-require_once "../db_connection.php";
+require_once "../php/db_connection.php";
 
 $log=$_POST['floatingInput'];
 $pass=$_POST['floatingPassword'];
@@ -13,5 +13,5 @@ $sql="INSERT INTO login_user (login_email,password,user_firstname,user_name,user
 $query=$pdo->prepare($sql);
 $query->execute(['lg'=>$log,'ps'=>$pass,'fn'=>$fname,'nm'=>$name,'pt'=>$patronymic]);
 
-header('Location: ../index.php');
+header('Location: ../php/index.php');
 ?>

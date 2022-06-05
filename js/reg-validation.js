@@ -43,6 +43,6 @@ $("#registration").on("click", function(){
     });
 
    
-    document.location.href='../index.php'
+    location.href='../php/index.php'
 });
 
