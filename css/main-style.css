@@ -28,5 +28,16 @@
   padding-bottom: 1rem!important;
 }
 
+.g-5{
+  display: flex;
+    flex-wrap: wrap;
+    align-items: center;    
+    justify-content: center;
+}
 
-
+#date_publ{
+  width: 50%;
+}
+.col-md-5{
+  width: 50%;
+}
