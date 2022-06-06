@@ -33,17 +33,17 @@ require_once "header.php";
               <label for="country" class="form-label" >Тип публікації</label>
               <select class="form-select" id="type_p" required="">
                 <option value="">Тип</option>
-                <option >Диссертация</option>
-                <option >Электронный ресурс</option>
+                <option >Дисертація</option>
+                <option >Електронний ресурс</option>
                 <option >Книга</option>
-                <option >Методические указания</option>
-                <option >Монография</option>
-                <option >Отчёт</option>
+                <option >Методичні вказівки</option>
+                <option >Монографія</option>
+                <option >Звіт</option>
                 <option >Патент</option>
                 <option >Практикум</option>
-                <option >Статья</option>
-                <option >Тезисы конференций</option>
-                <option >Учебное пособие</option>
+                <option >Стаття</option>
+                <option >Тези конференцій</option>
+                <option >Навчальний посібник</option>
               </select>
               <!-- <div class="invalid-feedback">
                 Please select a valid country.
@@ -57,8 +57,8 @@ require_once "header.php";
             </div>
 
             <div class="col-sm-6">
-              <label for="lastName" class="form-label">Ім'я</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+              <label for="lastName" class="form-label">Прізвище автора</label>
+              <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
               <div class="invalid-feedback">
                 Valid last name is required.
               </div>
