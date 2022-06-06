@@ -1,30 +1,26 @@
 <?php
-header('Content-type: application/json');
-header("Cache-Control: no-cache, must-revalidate");
-require_once "../php/db_connection.php";
-
-$log=$_REQUEST['email'];
-
-
-
-
-
-$sql="SELECT `login_email`, `password`, `role` FROM login_user WHERE `login_email`=:lg";
-$query=$pdo->prepare($sql);
-$query->execute(['lg'=>$log]);
-$user=$query->fetchAll(PDO::FETCH_OBJ);
-//$em=$user->login_email;  
-//setcookie("user",$em, time()+3600*24*30,"/");  
-echo json_encode($user);
-     
-    //exit();
-    //}
-
-    
-
-
-//header('Location: ../index.php');
-
-
+   include("../php/db_connection.php");
    
+   
+   if($_SERVER["REQUEST_METHOD"] == "POST") {
+      // username and password sent from form 
+      
+      $myusername = mysqli_real_escape_string($db,$_POST['email']);
+      $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
+      $decoded_pass = md5($mypassword);
+      
+      $sql = "SELECT id_user FROM login_user WHERE login_email = '$myusername' and password = '$decoded_pass'";
+      $result = mysqli_query($db,$sql);
+      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+      $count = mysqli_num_rows($result);
+      		
+      if($count == 1) {
+        //echo $myusername;
+         setcookie("email",$myusername, time()+3600*24*30,"/"); 
+         header("location: ../php/index.php");
+      }else {
+         echo "Your Login Name or Password is invalid";
+         $error = "Your Login Name or Password is invalid";
+      }
+   }
 ?>

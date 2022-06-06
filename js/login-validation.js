@@ -20,23 +20,12 @@ $("#login").on("click", function(){
         return false;
     }
 
-    $.ajax({
-        url: '../sing_in/login-server.php',
-        type: 'POST',
-        cache: false,
-        data: { 'floatingInput':email,'floatingPassword':pass },
-        dataType: 'html'
-    });
-    //
+    // $.ajax({
+    //     url: '../sing_in/login-server.php',
+    //     type: 'POST',
+    //     cache: false,
+    //     data: { 'floatingInput':email,'floatingPassword':pass },
+    //     dataType: 'html'
+    // });
+    
 });
-
-
-
-
-// function notFoundUser(){
-//     $("errorPass").text("Невірний логін або пароль")
-// }
-
-// function redirect(){
-//     document.location.href='../index.php'
-// }
