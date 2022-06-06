@@ -25,7 +25,7 @@ require_once "header.php";
           <h1 class="display-5 fw-bold lh-1 mb-3">Бібліографічна інформаційна система</h1>
           <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
           <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-            <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" onclick="window.location.href='../sing_in/html-login.php'">Увійти</button>
+            <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" onclick="window.location.href='../sign_in/html-login.php'">Увійти</button>
             <button type="button" class="btn btn-outline-secondary btn-lg px-4" onclick="window.location.href='html-publ-search.php'" >Пошук публікацій</button>
           </div>
         </div>

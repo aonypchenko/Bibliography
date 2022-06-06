@@ -31,34 +31,32 @@ require_once "header.php";
 
             <div class="col-md-5">
               <label for="country" class="form-label" >Тип публікації</label>
-              <select class="form-select" id="type_p" required="">
-                <option value="">Тип</option>
-                <option >Дисертація</option>
-                <option >Електронний ресурс</option>
-                <option >Книга</option>
-                <option >Методичні вказівки</option>
-                <option >Монографія</option>
-                <option >Звіт</option>
-                <option >Патент</option>
-                <option >Практикум</option>
-                <option >Стаття</option>
-                <option >Тези конференцій</option>
-                <option >Навчальний посібник</option>
+              <select class="form-select" id="type_p" onchange="add_type()">
+                <option disabled selected></option>
+                <option id="dissertation">Дисертація</option>
+                <option id="electronic_resource">Електронний ресурс</option>
+                <option id="book">Книга</option>
+                <option id="guidelines">Методичні вказівки</option>
+                <option id="monograph">Монографія</option>
+                <option id="report">Звіт</option>
+                <option id="patent">Патент</option>
+                <option id="workshop">Практикум</option>
+                <option id="article">Стаття</option>
+                <option id="conference_abstracts">Тези конференцій</option>
+                <option id="tutorial">Навчальний посібник</option>
               </select>
-              <!-- <div class="invalid-feedback">
-                Please select a valid country.
-              </div> -->
+              
             </div>
 
             <div class="col-sm-6">
               <label for="Name" class="form-label">Назва</label>
-              <input type="text" class="form-control" id="Name" placeholder="" value="" required="">
+              <input type="text" class="form-control" id="Name">
               <!-- <div class="invalid-feedback">Valid first name is required.</div> -->
             </div>
 
             <div class="col-sm-6">
               <label for="lastName" class="form-label">Прізвище автора</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+              <input type="text" class="form-control" id="firstName" >
               <div class="invalid-feedback">
                 Valid last name is required.
               </div>
@@ -73,6 +71,10 @@ require_once "header.php";
             </form>
             </div>
 
+            <div id="div-one" class='col-sm-6'></div>
+            <div id="div-two" class='col-sm-6'></div>
+            <div id="div-three" class='col-sm-6'></div>
+            
          
 
           <hr class="my-4">
@@ -85,6 +87,6 @@ require_once "header.php";
 <?php
 require_once "footer.php";
 ?>
-<script src="../js/logout.js"></script>
+<script src="../js/adding.js"></script>
 </body>
 </html>

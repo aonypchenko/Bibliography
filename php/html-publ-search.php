@@ -80,6 +80,6 @@ require_once "header.php";
 <?php
 require_once "footer.php";
 ?>
-<script src="../js/logout.js"></script>
+
 </body>
 </html>

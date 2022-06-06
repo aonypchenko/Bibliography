@@ -13,10 +13,10 @@
 <?php
 if(!isset($_COOKIE['email']) OR trim($_COOKIE['email'])==''):
 ?>
-  <button type="button" class="btn btn-primary" onclick="window.location.href='../sing_in/html-registration.php'">Реєстрація</button>
+  <button type="button" class="btn btn-primary" onclick="window.location.href='../sign_in/html-registration.php'">Реєстрація</button>
 
   <nav class="d-inline-flex mt-2 mt-md-0 ms-md-2">
-  <button type="button" class="btn btn-primary" onclick="window.location.href='../sing_in/login.php'">Увійти</button>
+  <button type="button" class="btn btn-primary" onclick="window.location.href='../sign_in/login.php'">Увійти</button>
   </nav>
 
   <?php
@@ -29,7 +29,7 @@ if(!isset($_COOKIE['email']) OR trim($_COOKIE['email'])==''):
   <button type="button" name="exit_user" class="btn btn-light me-md-3" onclick="window.location.href='my-publication.php'">Мої публікації</button>
   </nav>
   <nav class="d-inline-flex mt-2 mt-md-0 ms-md-2">
-  <form method="post" action="../sing_in/exit.php">
+  <form method="post" action="../sign_in/exit.php">
     <input id="logout" class="btn btn-primary" type="submit" value="Вийти"/>
   </form>
   </nav>

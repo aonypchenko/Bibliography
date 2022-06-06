@@ -35,7 +35,7 @@ $("#registration").on("click", function(){
     }
 
     $.ajax({
-        url: '../sing_in/registration-server.php',
+        url: '../sign_in/registration-server.php',
         type: 'POST',
         cache: false,
         data: { 'firstname':fname,'name':name,'patr':patr,'floatingInput':em,'floatingPassword':pass },
