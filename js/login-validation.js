@@ -18,14 +18,5 @@ $("#login").on("click", function(){
     else if(pass.length<6||pass.length>12){
         $("#errorPass").text("Пароль повинен бути від 6 до 12 символів");
         return false;
-    }
-
-    // $.ajax({
-    //     url: '../sing_in/login-server.php',
-    //     type: 'POST',
-    //     cache: false,
-    //     data: { 'floatingInput':email,'floatingPassword':pass },
-    //     dataType: 'html'
-    // });
-    
+    }    
 });

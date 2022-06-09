@@ -29,11 +29,35 @@ require_once "header.php";
         <div class="card shadow-sm">
 
             <div class="card-body">
-            
-
             <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <div class="col p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-primary">Дипломний проєкт</strong>
+            <?php
+            include("../php/db_connection.php");
+
+            $fio_str = $_COOKIE["email"];
+                
+                $fio_array=explode(" ",$fio_str);
+                $fname=$fio_array[0];
+                $name=$fio_array[1];
+                $patr=$fio_array[2];
+                $id_user=$fio_array[3];
+
+                if($_SERVER["REQUEST_METHOD"] == "POST") {
+                $publ_id=$_POST['publ_id'];
+
+                $sql = "SELECT * FROM publication WHERE id_publ='$publ_id'";
+                $result = $db->query($sql);
+                $row = $result->fetch_all(MYSQLI_ASSOC);
+                // print_r($row);
+                
+                foreach($row as $i){
+                    
+                    print("<strong class='d-inline-block mb-2 text-primary' id='publication-name'></strong>");
+                   
+                }
+                }
+                ?>
+        
             <h3 class="mb-0">Біобліографічна інформаційна система</h3>
             <div class="mb-1 text-muted">6 червня 2022</div>
             <p class="card-text mb-auto">Дипломний проєкт студента 4 курсу Харківського національного університету радіоелектроніки Онипченка Артема Олександровича.</p>
@@ -62,6 +86,8 @@ require_once "header.php";
     
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="../js/view-button.js"></script>
 
 <?php
 require_once "footer.php";

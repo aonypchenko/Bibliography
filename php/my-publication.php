@@ -59,57 +59,16 @@ require_once "header.php";
     </div>
 </div>
 <div class="container">
-
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col">
-        <div class="card shadow-sm">
-
-            <div class="card-body">
-            <p class="card-text">Приклад публікації</p>
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location.href='publication-card.php'">Переглянути</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location.href='publication-card.php'">Редагувати</button>
-                </div>
-                <small class="text-muted">06.06.2022</small>
-            </div>
-            </div>
-        </div>
-        </div>
-        <div class="col">
-        <div class="card shadow-sm">
-
-            <div class="card-body">
-            <p class="card-text">Приклад публікації</p>
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location.href='publication-card.php'">Переглянути</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location.href='publication-card.php'">Редагувати</button>
-                </div>
-                <small class="text-muted">06.06.2022</small>
-            </div>
-            </div>
-        </div>
-        </div>
-        <div class="col">
-        <div class="card shadow-sm">
-
-            <div class="card-body">
-            <p class="card-text">Приклад публікації</p>
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location.href='publication-card.php'">Переглянути</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location.href='publication-card.php'">Редагувати</button>
-                </div>
-                <small class="text-muted">06.06.2022</small>
-            </div>
-            </div>
-        </div>
-        </div>
-    </div>
-    
+    <form>
+    <div class='row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3'>
+        <?php
+        require_once "create-html.php";
+        ?>        
+    </div>  
+</form>   
 </div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="../js/view-button.js"></script>
 
 <?php
 require_once "footer.php";

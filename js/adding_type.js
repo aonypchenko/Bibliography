@@ -1,15 +1,13 @@
-    document.getElementById("type_p").onchange = function() {add_type()};
+document.getElementById("type_p").onchange = function() {add_type()};
 
-    function add_type(){
+function add_type(){
     var x = document.getElementById("type_p").value;
-    console.log(x);
     
-   
     switch(x){
         case "Дисертація":
             topic("div-one");
             url_p("div-two");
-            clean_html("div-three")
+            clean_html("div-three");
             break;
         case "Електронний ресурс":
             url_p("div-one");
@@ -62,19 +60,14 @@
             clean_html("div-three")
             break;
     }
-
-
-    // $.ajax({
-    //     url: '../sign_in/registration-server.php',
-    //     type: 'POST',
-    //     cache: false,
-    //     data: { 'firstname':fname,'name':name,'patr':patr,'floatingInput':em,'floatingPassword':pass },
-    //     dataType: 'html'
-    // });
-
-   
-    // location.href='../php/index.php'
 }
+
+
+    $('#save').on('click', function(){
+        addToDB("topic");
+    });
+   
+    
 
 function topic(place){
     let element="";
@@ -166,3 +159,39 @@ function clean_html(place){
     element+="";
     document.getElementById(place).innerHTML=element;
 }
+
+function addToDB(id_1){
+    
+    var type = document.getElementById("type_p").value;
+    var name = document.getElementById("Name").value;
+    var dInput = document.getElementById("date_input").value;
+
+    
+    
+    var field1 = document.getElementById(id_1);
+    // var field2 = document.getElementById(id_2).value;
+    // var field3 = document.getElementById(id_3).value;
+
+    console.log(type);
+    console.log(field1);
+   
+    // $.ajax({
+    // url: '../php/add-server.php',
+    // type: 'POST',
+    // cache: false,
+    // data: { 'type_p':type,'Name':name,'date_input':dInput},
+    // dataType: 'html'
+    // }); 
+  }
+    
+
+    // $.ajax({
+    //     url: '../sign_in/registration-server.php',
+    //     type: 'POST',
+    //     cache: false,
+    //     data: { 'firstname':fname,'name':name,'patr':patr,'floatingInput':em,'floatingPassword':pass },
+    //     dataType: 'html'
+    // });
+
+   
+    // location.href='../php/index.php'

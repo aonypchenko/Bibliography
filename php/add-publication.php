@@ -21,13 +21,12 @@ if(!isset($_COOKIE['email']) OR trim($_COOKIE['email'])==''){
 require_once "header.php";
 ?>
 <!-- ------------------------------------- -->
-<div class="row g-5">
+<div class="row g-5" id="add_elements">
       
       <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">Додати публікацію</h4>
-        <form class="needs-validation" novalidate="">
+        <form class="needs-validation">
           <div class="row g-3">
-            
 
             <div class="col-md-5">
               <label for="country" class="form-label" >Тип публікації</label>
@@ -45,7 +44,7 @@ require_once "header.php";
                 <option id="conference_abstracts">Тези конференцій</option>
                 <option id="tutorial">Навчальний посібник</option>
               </select>
-              
+              <div id="errorType"></div>
             </div>
 
             <div class="col-sm-6">
@@ -54,19 +53,11 @@ require_once "header.php";
               <!-- <div class="invalid-feedback">Valid first name is required.</div> -->
             </div>
 
-            <div class="col-sm-6">
-              <label for="lastName" class="form-label">Прізвище автора</label>
-              <input type="text" class="form-control" id="firstName" >
-              <div class="invalid-feedback">
-                Valid last name is required.
-              </div>
-            </div>
-
             <div id="date_publ">
             <form>
                 <div class="form-group">
                 <label for="inputDate" class="form-label">Дата публікації:</label>
-                <input type="date" class="form-control" >
+                <input type="date" class="form-control" id="date_input">
                 </div>
             </form>
             </div>
@@ -75,11 +66,9 @@ require_once "header.php";
             <div id="div-two" class='col-sm-6'></div>
             <div id="div-three" class='col-sm-6'></div>
             
-         
-
           <hr class="my-4">
-
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Зберегти</button>
+          
+          <input class="w-100 btn btn-primary btn-lg" type="button" id="save" value="Save"/>
         </form>
       </div>
     </div>
@@ -87,6 +76,7 @@ require_once "header.php";
 <?php
 require_once "footer.php";
 ?>
-<script src="../js/adding.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="../js/adding_type.js"></script>
 </body>
 </html>
