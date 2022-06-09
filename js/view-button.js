@@ -20,12 +20,12 @@
    function clcVievButton(btn){
  
     var btn_id=btn.id;
-    var vb=document.getElementById(btn_id).value;
+    document.cookie = "singlePagePublicationId=" + btn_id;
+
     //console.log(vb);
     request.onload=loadData3;
     request.open("POST","../php/publication-card.php");
     request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    request.send("publ_id="+btn_id);
     location.href='../php/publication-card.php';
 
 }

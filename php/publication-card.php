@@ -33,8 +33,9 @@ require_once "header.php";
             <div class="col p-4 d-flex flex-column position-static">
             <?php
             include("../php/db_connection.php");
-
-            $fio_str = $_COOKIE["email"];
+            include("../php/define-type.php");
+                $fio_str = $_COOKIE["email"];
+                $singlePagePublicationId = $_COOKIE["singlePagePublicationId"];
                 
                 $fio_array=explode(" ",$fio_str);
                 $fname=$fio_array[0];
@@ -42,36 +43,32 @@ require_once "header.php";
                 $patr=$fio_array[2];
                 $id_user=$fio_array[3];
 
-                if($_SERVER["REQUEST_METHOD"] == "POST") {
-                $publ_id=$_POST['publ_id'];
-
-                $sql = "SELECT * FROM publication WHERE id_publ='$publ_id'";
+                $sql = "SELECT * FROM publication INNER JOIN dissertation ON publication.id_publ=dissertation.publication_id_publ  WHERE publication.id_publ='$singlePagePublicationId'";
                 $result = $db->query($sql);
                 $row = $result->fetch_all(MYSQLI_ASSOC);
-                // print_r($row);
                 
+                //$id_publ=$row[0];
                 foreach($row as $i){
-                    
-                    print("<strong class='d-inline-block mb-2 text-primary' id='publication-name'></strong>");
-                   
-                }
-                }
-                ?>
-        
-            <h3 class="mb-0">Біобліографічна інформаційна система</h3>
-            <div class="mb-1 text-muted">6 червня 2022</div>
-            <p class="card-text mb-auto">Дипломний проєкт студента 4 курсу Харківського національного університету радіоелектроніки Онипченка Артема Олександровича.</p>
+                    $id_publ=def_type($i["publ_type"]);
+                    print("<strong class='d-inline-block mb-2 text-primary' id='publ_type'>".$i["publ_type"]."</strong>");                       
+                    print("<h3 class='mb-0'>".$i["publ_name"]."</h3>");
+                    print("<h4 class='mb-0'>".$i["topic"]."</h4>");
+                    print("<strong class='d-inline-block mb-2 text-primary' id='publication-name'>".$i["level"]."</strong>");
+                    print("<div class='mb-1 text-muted'>".$i["publ_date"]."</div>");
+                    print("<p class='card-text mb-auto'>".$fname." ".$name." ".$patr."</p>");
+                }    
+            ?>
             </div>
             <div class="col-auto d-none d-lg-block">
             </div>
             </div>    
 
            
-            <div class="d-flex justify-content-between align-items-center">
-                <small class="text-muted">06.06.2022</small>
+            <div class="d-flex justify-content-end align-items-center">
+                <!-- <small class="text-muted">06.06.2022</small> -->
                 <div>
                 <nav class="d-inline-flex mt-2 mt-md-0 ms-md-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Редагувати</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" id="edit" onclick="editInfo()">Редагувати</button>
                 </nav>
                 <nav class="d-inline-flex mt-2 mt-md-0 ms-md-2">
                 <button type="button" class="btn btn-sm btn-primary">Завантажити картку</button>
@@ -88,6 +85,7 @@ require_once "header.php";
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="../js/view-button.js"></script>
+<script src="../js/edit.js"></script>
 
 <?php
 require_once "footer.php";

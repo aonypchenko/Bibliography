@@ -62,9 +62,14 @@ require_once "header.php";
             </form>
             </div>
 
-            <div id="div-one" class='col-sm-6'></div>
+            <div id="div-one" class='col-sm-6'>
+            <label for='url_p' class='form-label'>Посилання</label>
+              <input type='text' class='form-control' id='url_p'>
+              <div class='invalid-feedback'>Valid last name is required.</div>
+            </div>
             <div id="div-two" class='col-sm-6'></div>
             <div id="div-three" class='col-sm-6'></div>
+            <div id="div-four" class='col-sm-6'></div>
             
           <hr class="my-4">
           

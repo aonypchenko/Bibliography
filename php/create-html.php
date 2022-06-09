@@ -22,7 +22,7 @@ $fio_str = $_COOKIE["email"];
         print("<small class='mb-1 text-muted'>".$i["publ_type"]."</small>");
         print("<div class='d-flex justify-content-between align-items-center'>");
         print(" <div class='btn-group'>");
-        print("<button type='button' class='btn btn-sm btn-outline-secondary' onclick='clcVievButton(this)' id='".$i["id_publ"]."'value='".$i["id_publ"]."'>Переглянути</button>");
+        print("<button type='button' class='btn btn-sm btn-outline-secondary' onclick='clcVievButton(this)' id='".$i["id_publ"]."'>Переглянути</button>");
         print("<button type='button' class='btn btn-sm btn-outline-secondary' onclick='window.location.href=`#`'>Редагувати</button>");
         print("</div>");
         print("<small class='text-muted'>".$i["publ_date"]."</small>");
