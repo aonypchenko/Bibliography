@@ -29,26 +29,33 @@ require_once "header.php";
                 
                 $searchDataValue=explode(" ",$searchData);
                 
-                $publicationType=$searchDataValue[0];
-                $publicationName=$searchDataValue[1]." ".$searchDataValue[2]." ".$searchDataValue[3];
-                $publicationDate=$searchDataValue[4];
-                $publicationId=$searchDataValue[6];
+                $publicationId=$searchDataValue[0];
+
+                //print_r($publicationId);
+                $sql = "SELECT * FROM publication WHERE id_publ='$publicationId'";
+                $result = $db->query($sql);
+                $row = $result->fetch_all(MYSQLI_ASSOC);
+
                 
+                foreach($row as $i){
                 print("<div class='col'>");
                 print("<div class='card shadow-sm'>");
                 print("<div class='card-body'>");
-                print("<p class='publication-name'>".$publicationType."</p>");
-                print("<small class='mb-1 text-muted'>".$publicationName."</small>");
+                print("<p class='publication-name'>".$i["publ_type"]."</p>");
+                print("<small class='mb-1 text-muted'>".$i["publ_name"]."</small>");
                 print("<div class='d-flex justify-content-between align-items-center'>");
                 print(" <div class='btn-group'>");
                 print("<button type='button' class='btn btn-sm btn-outline-secondary' onclick='clcVievButton(this)' id='".$publicationId."'>Переглянути</button>");
                 print("<button type='button' class='btn btn-sm btn-outline-secondary' onclick='window.location.href=`#`'>Редагувати</button>");
                 print("</div>");
-                print("<small class='text-muted'>".$publicationDate."</small>");
+                print("<small class='text-muted'>".$i["publ_date"]."</small>");
                 print("</div>");
                 print("</div>");
                 print("</div>");
-                print("</div>");    
+                print("</div>");
+                }
+        
+                
             ?>
 <!-- -------------------------------------- -->
 <?php

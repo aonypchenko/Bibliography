@@ -47,8 +47,19 @@ require_once "header.php";
                 $result=mysqli_query($db,$sql);
                 $row = mysqli_fetch_object($result);
                 $publicationType=$row->publ_type;
+                $publicationName=$row->publ_name;
                 $date=$row->publ_date;
                 $link=$row->url;
+               
+               //Write file
+               file_put_contents('../files/download-file.txt',"");
+               $downloadFile=file_get_contents('../files/download-file.txt');
+               
+                $downloadFile.=$publicationName." "."[".$publicationType."]. – Режим доступу: ".$link." – ".$date." – Загол. з екрану.";
+                $downloadFile.="\n";
+                $downloadFile.="\nТип: ".$publicationType."\nНазва: ".$publicationName."\nДата публікації: ".$date."\nПрізвище, ім'я, по батькові автора: ".$fname." ".$name." ".$patr;
+                file_put_contents('../files/download-file.txt',$downloadFile);
+
                 print("<strong class='d-inline-block mb-2 text-primary' id='publ_type'>".$row->publ_type."</strong>");                       
                 print("<h3 class='mb-0'>".$row->publ_name."</h3>");
                 
@@ -60,6 +71,9 @@ require_once "header.php";
             $row = mysqli_fetch_object($result);
             print("<p class='card-text mb-auto'><strong>Тема: </strong>".$row->topic."</p>");
             print("<strong class='d-inline-block mb-2 text-primary' id='publication-name'>Рівень: ".$row->level."</strong>");
+            $downloadFile.="\nТема: ".$row->topic;
+            $downloadFile.="\nРівень: ".$row->level;
+            file_put_contents('../files/download-file.txt',$downloadFile);
             break;
          case "Електронний ресурс":
            
@@ -69,31 +83,40 @@ require_once "header.php";
             $result=mysqli_query($db,$sql);
             $row = mysqli_fetch_object($result);
             print("<p class='card-text mb-auto'><strong>Наявність друкованої версії: </strong>".$row->printed_version."</p>");
-            
+            $downloadFile.="\nДрукована версія: ".$row->printed_version;
+            file_put_contents('../files/download-file.txt',$downloadFile);
             break;
          case "Методичні вказівки":
             $sql="SELECT * FROM guidelines WHERE publication_id_publ='$singlePagePublicationId'";
             $result=mysqli_query($db,$sql);
             $row = mysqli_fetch_object($result);
             print("<p class='card-text mb-auto'><strong>Дисципліна: </strong>".$row->discipline."</p>");
+            $downloadFile.="\nДисципліна: ".$row->discipline;
+            file_put_contents('../files/download-file.txt',$downloadFile);
             break;
          case "Монографія":
             $sql="SELECT * FROM monograph WHERE publication_id_publ='$singlePagePublicationId'";
             $result=mysqli_query($db,$sql);
             $row = mysqli_fetch_object($result);
             print("<p class='card-text mb-auto'><strong>Тема: </strong>".$row->topic."</p>");
+            $downloadFile.="\nТема: ".$row->topic;
+            file_put_contents('../files/download-file.txt',$downloadFile);
             break;
          case "Звіт":
             $sql="SELECT * FROM report WHERE publication_id_publ='$singlePagePublicationId'";
             $result=mysqli_query($db,$sql);
             $row = mysqli_fetch_object($result);
             print("<p class='card-text mb-auto'><strong>Дисципліна: </strong>".$row->discipline."</p>");
+            $downloadFile.="\nДисципліна: ".$row->discipline;
+            file_put_contents('../files/download-file.txt',$downloadFile);
             break;
          case "Патент":
             $sql="SELECT * FROM patent WHERE publication_id_publ='$singlePagePublicationId'";
             $result=mysqli_query($db,$sql);
             $row = mysqli_fetch_object($result);
             print("<p class='card-text mb-auto'><strong>Термін дії патенту: </strong>".$row->patent_duration."</p>");
+            $downloadFile.="\nТермін дії патенту: ".$row->patent_duration;
+            file_put_contents('../files/download-file.txt',$downloadFile);
             break;
          case "Практикум":
             $sql="SELECT * FROM workshop WHERE publication_id_publ='$singlePagePublicationId'";
@@ -101,6 +124,9 @@ require_once "header.php";
             $row = mysqli_fetch_object($result);
             print("<p class='card-text mb-auto'><strong>Дисципліна: </strong>".$row->discipline."</p>");
             print("<strong class='d-inline-block mb-2 text-primary' id='publication-name'>Курс: ".$row->cource."</strong>");
+            $downloadFile.="\nДисципліна: ".$row->discipline;
+            $downloadFile.="\nКурс: ".$row->cource;
+            file_put_contents('../files/download-file.txt',$downloadFile);
             break;
          case "Стаття":
             
@@ -112,6 +138,10 @@ require_once "header.php";
             print("<p class='card-text mb-auto'><strong>Конференція: </strong>".$row->conference."</p>");
             print("<p class='card-text mb-auto'><strong>Дата коференції: </strong>".$row->conference_date."</p>");
             print("<strong class='d-inline-block mb-2 text-primary' id='publication-name'>Місце проведення конференції: ".$row->place_of_publication."</strong>");
+            $downloadFile.="\nКонференція: ".$row->conference;
+            $downloadFile.="\nДата коференції: ".$row->conference_date;
+            $downloadFile.="\nМісце проведення конференції: ".$row->place_of_publication;
+            file_put_contents('../files/download-file.txt',$downloadFile);
             break;
          case "Навчальний посібник":
             $sql="SELECT * FROM tutorial WHERE publication_id_publ='$singlePagePublicationId'";
@@ -119,13 +149,18 @@ require_once "header.php";
             $row = mysqli_fetch_object($result);
             print("<p class='card-text mb-auto'><strong>Тема: </strong>".$row->topic."</p>");
             print("<strong class='d-inline-block mb-2 text-primary' id='publication-name'>Рівень: ".$row->level."</strong>");
+            $downloadFile.="\nТема: ".$row->topic;
+            $downloadFile.="\nРівень: ".$row->level;
+            file_put_contents('../files/download-file.txt',$downloadFile);
             break;
      }
                 //$id_publ=$row[0];
                 
                 print("<div class='mb-1 text-muted'><strong>Дата публікації: </strong>".$date."</div>");
                 print("<p class='card-text mb-auto'><strong>Прізвище, ім'я по батькові автора: </strong>".$fname." ".$name." ".$patr."</p>");
-                print("<a href='".$link."'>Посилання на публікацію</a>")
+                print("<a href='".$link."'>Посилання на публікацію</a>");
+
+           
             ?>
             </div>
             <div class="col-auto d-none d-lg-block">
@@ -136,11 +171,12 @@ require_once "header.php";
             <div class="d-flex justify-content-end align-items-center">
                 <!-- <small class="text-muted">06.06.2022</small> -->
                 <div>
+
                 <nav class="d-inline-flex mt-2 mt-md-0 ms-md-2">
                 <button type="button" class="btn btn-sm btn-outline-secondary" id="edit" onclick="editInfo()">Редагувати</button>
                 </nav>
                 <nav class="d-inline-flex mt-2 mt-md-0 ms-md-2">
-                <button type="button" class="btn btn-sm btn-primary">Завантажити картку</button>
+                <a type="button" class="btn btn-sm btn-primary" href="../files/download-file.txt" download="">Завантажити картку</a>
                 </nav>
                 </div>
             </div>
