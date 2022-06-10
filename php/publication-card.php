@@ -33,7 +33,7 @@ require_once "header.php";
             <div class="col p-4 d-flex flex-column position-static">
             <?php
             include("../php/db_connection.php");
-            include("../php/define-type.php");
+            
                 $fio_str = $_COOKIE["email"];
                 $singlePagePublicationId = $_COOKIE["singlePagePublicationId"];
                 
@@ -43,20 +43,89 @@ require_once "header.php";
                 $patr=$fio_array[2];
                 $id_user=$fio_array[3];
 
-                $sql = "SELECT * FROM publication INNER JOIN dissertation ON publication.id_publ=dissertation.publication_id_publ  WHERE publication.id_publ='$singlePagePublicationId'";
-                $result = $db->query($sql);
-                $row = $result->fetch_all(MYSQLI_ASSOC);
+                $sql = "SELECT * FROM publication WHERE publication.id_publ='$singlePagePublicationId'";
+                $result=mysqli_query($db,$sql);
+                $row = mysqli_fetch_object($result);
+                $publicationType=$row->publ_type;
+                $date=$row->publ_date;
+                $link=$row->url;
+                print("<strong class='d-inline-block mb-2 text-primary' id='publ_type'>".$row->publ_type."</strong>");                       
+                print("<h3 class='mb-0'>".$row->publ_name."</h3>");
                 
+
+         switch($publicationType){
+         case "Дисертація":
+            $sql="SELECT * FROM dissertation WHERE publication_id_publ='$singlePagePublicationId'";
+            $result=mysqli_query($db,$sql);
+            $row = mysqli_fetch_object($result);
+            print("<p class='card-text mb-auto'><strong>Тема: </strong>".$row->topic."</p>");
+            print("<strong class='d-inline-block mb-2 text-primary' id='publication-name'>Рівень: ".$row->level."</strong>");
+            break;
+         case "Електронний ресурс":
+           
+            break;
+         case "Книга":
+            $sql="SELECT * FROM book WHERE publication_id_publ='$singlePagePublicationId'";
+            $result=mysqli_query($db,$sql);
+            $row = mysqli_fetch_object($result);
+            print("<p class='card-text mb-auto'><strong>Наявність друкованої версії: </strong>".$row->printed_version."</p>");
+            
+            break;
+         case "Методичні вказівки":
+            $sql="SELECT * FROM guidelines WHERE publication_id_publ='$singlePagePublicationId'";
+            $result=mysqli_query($db,$sql);
+            $row = mysqli_fetch_object($result);
+            print("<p class='card-text mb-auto'><strong>Дисципліна: </strong>".$row->discipline."</p>");
+            break;
+         case "Монографія":
+            $sql="SELECT * FROM monograph WHERE publication_id_publ='$singlePagePublicationId'";
+            $result=mysqli_query($db,$sql);
+            $row = mysqli_fetch_object($result);
+            print("<p class='card-text mb-auto'><strong>Тема: </strong>".$row->topic."</p>");
+            break;
+         case "Звіт":
+            $sql="SELECT * FROM report WHERE publication_id_publ='$singlePagePublicationId'";
+            $result=mysqli_query($db,$sql);
+            $row = mysqli_fetch_object($result);
+            print("<p class='card-text mb-auto'><strong>Дисципліна: </strong>".$row->discipline."</p>");
+            break;
+         case "Патент":
+            $sql="SELECT * FROM patent WHERE publication_id_publ='$singlePagePublicationId'";
+            $result=mysqli_query($db,$sql);
+            $row = mysqli_fetch_object($result);
+            print("<p class='card-text mb-auto'><strong>Термін дії патенту: </strong>".$row->patent_duration."</p>");
+            break;
+         case "Практикум":
+            $sql="SELECT * FROM workshop WHERE publication_id_publ='$singlePagePublicationId'";
+            $result=mysqli_query($db,$sql);
+            $row = mysqli_fetch_object($result);
+            print("<p class='card-text mb-auto'><strong>Дисципліна: </strong>".$row->discipline."</p>");
+            print("<strong class='d-inline-block mb-2 text-primary' id='publication-name'>Курс: ".$row->cource."</strong>");
+            break;
+         case "Стаття":
+            
+            break;
+         case "Тези конференцій":
+            $sql="SELECT * FROM conference_abstracts WHERE publication_id_publ='$singlePagePublicationId'";
+            $result=mysqli_query($db,$sql);
+            $row = mysqli_fetch_object($result);
+            print("<p class='card-text mb-auto'><strong>Конференція: </strong>".$row->conference."</p>");
+            print("<p class='card-text mb-auto'><strong>Дата коференції: </strong>".$row->conference_date."</p>");
+            print("<strong class='d-inline-block mb-2 text-primary' id='publication-name'>Місце проведення конференції: ".$row->place_of_publication."</strong>");
+            break;
+         case "Навчальний посібник":
+            $sql="SELECT * FROM tutorial WHERE publication_id_publ='$singlePagePublicationId'";
+            $result=mysqli_query($db,$sql);
+            $row = mysqli_fetch_object($result);
+            print("<p class='card-text mb-auto'><strong>Тема: </strong>".$row->topic."</p>");
+            print("<strong class='d-inline-block mb-2 text-primary' id='publication-name'>Рівень: ".$row->level."</strong>");
+            break;
+     }
                 //$id_publ=$row[0];
-                foreach($row as $i){
-                    $id_publ=def_type($i["publ_type"]);
-                    print("<strong class='d-inline-block mb-2 text-primary' id='publ_type'>".$i["publ_type"]."</strong>");                       
-                    print("<h3 class='mb-0'>".$i["publ_name"]."</h3>");
-                    print("<h4 class='mb-0'>".$i["topic"]."</h4>");
-                    print("<strong class='d-inline-block mb-2 text-primary' id='publication-name'>".$i["level"]."</strong>");
-                    print("<div class='mb-1 text-muted'>".$i["publ_date"]."</div>");
-                    print("<p class='card-text mb-auto'>".$fname." ".$name." ".$patr."</p>");
-                }    
+                
+                print("<div class='mb-1 text-muted'><strong>Дата публікації: </strong>".$date."</div>");
+                print("<p class='card-text mb-auto'><strong>Прізвище, ім'я по батькові автора: </strong>".$fname." ".$name." ".$patr."</p>");
+                print("<a href='".$link."'>Посилання на публікацію</a>")
             ?>
             </div>
             <div class="col-auto d-none d-lg-block">

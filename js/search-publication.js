@@ -53,8 +53,8 @@ function add_type(){
 }
 
 
-    $('#save').on('click', function(){
-        addToDB();
+    $('#search').on('click', function(){
+        searchPublication();
     });
    
     
@@ -128,7 +128,7 @@ function conference(place1,place2){
 
     let element2="";
     element2+="<label for='conference' class='form-label'>Дата конференції</label>"
-    element2+="<input type='date' class='form-control' id='conferenceDate'>"
+    element2+="<input type='text' class='form-control' id='conferenceDate'>"
     element2+="<div class='invalid-feedback'>"
     element2+="Valid last name is required."
     element2+="</div>"
@@ -167,7 +167,7 @@ function clean_html(place){
     document.getElementById(place).innerHTML=element;
 }
 
-function addToDB(){
+function searchPublication(){
         
     var x = document.getElementById("type_p").value;
     switch(x){
@@ -304,27 +304,24 @@ function request(value1,value2,value3){
     var publicationType = document.getElementById("type_p").value;
     var publicationName = document.getElementById("Name").value;
     var publicationDate = document.getElementById("date_input").value;
-    var url = document.getElementById("url_p").value;
     if(publicationType==""||publicationName==""||publicationDate==""){
-        alert('Всі поля повинні бути заповненими!')
+        alert('Поля "Тип","Назва","Дата" повинні бути заповненими!')
     } else{
     $.ajax({
-    url: '../php/add-server.php',
+    url: '../php/search-server.php',
     type: 'POST',
     success : function (result) {
-        console.log ('success');
+        
       },
       error : function (result) {
         console.log (result);
       },
     cache: false,
-    data: { 'publicationType':publicationType,'publicationName':publicationName,'publicationDate':publicationDate,'url_p':url,'valueFirstField':value1,'valueSecongField':value2,'valueThirdField':value3},
+    data: { 'publicationType':publicationType,'publicationName':publicationName,'publicationDate':publicationDate,'valueFirstField':value1,'valueSecongField':value2,'valueThirdField':value3},
     dataType: 'json'
     }); 
-    alert("Публікацію успішно додано!")
-    location.reload()
+    location.href='../php/result-search.php';
   }
-
 }
     
 
