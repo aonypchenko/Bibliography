@@ -1,9 +1,3 @@
-<?php
-if(!isset($_COOKIE['email']) OR trim($_COOKIE['email'])==''){
-    header('Location: ../index.php');
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>

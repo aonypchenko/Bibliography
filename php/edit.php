@@ -1,3 +1,9 @@
+<?php
+if(!isset($_COOKIE['email']) OR trim($_COOKIE['email'])==''){
+    header('Location: ../index.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -16,10 +22,10 @@ require_once "header.php";
 ?>
 <!-- ------------------------------------- -->
 <div class="row g-5" id="add_elements">
-    
-      <div class="col-md-7 col-lg-8">
-        <h4 class="mb-3">Пошук публікації</h4>
       
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Редагувати публікацію</h4>
+        <form class="needs-validation">
           <div class="row g-3">
 
             <div class="col-md-5">
@@ -56,14 +62,19 @@ require_once "header.php";
             </form>
             </div>
 
+            <div id="div-one" class='col-sm-6'>
+            <label for='url_p' class='form-label'>Посилання</label>
+              <input type='text' class='form-control' id='url_p'>
+              <div class='invalid-feedback'>Valid last name is required.</div>
+            </div>
             <div id="div-two" class='col-sm-6'></div>
             <div id="div-three" class='col-sm-6'></div>
             <div id="div-four" class='col-sm-6'></div>
             
           <hr class="my-4">
           
-          <button class="w-100 btn btn-primary btn-lg" type="button" id="search">Знайти</button>
-  
+          <input class="w-100 btn btn-primary btn-lg" type="button" id="save" value="Save"/>
+        </form>
       </div>
     </div>
 <!-- -------------------------------------- -->
@@ -71,6 +82,6 @@ require_once "header.php";
 require_once "footer.php";
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="../js/search-publication.js"></script>
+<script src="../js/edit.js"></script>
 </body>
 </html>

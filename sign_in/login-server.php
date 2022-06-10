@@ -22,8 +22,8 @@
          //echo $_COOKIE["email"];
          header("location: ../php/index.php");
       }else {
-         echo "Your Login Name or Password is invalid";
          $error = "Your Login Name or Password is invalid";
+         echo "Your Login Name or Password is invalid";
       }
    }
 ?>

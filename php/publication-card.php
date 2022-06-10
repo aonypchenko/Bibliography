@@ -1,9 +1,4 @@
-<?php
-if(!isset($_COOKIE['email']) OR trim($_COOKIE['email'])==''){
-    header('Location: ../index.php');
-    exit();
-}
-?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -34,15 +29,10 @@ require_once "header.php";
             <?php
             include("../php/db_connection.php");
             
-                $fio_str = $_COOKIE["email"];
-                $singlePagePublicationId = $_COOKIE["singlePagePublicationId"];
                 
-                $fio_array=explode(" ",$fio_str);
-                $fname=$fio_array[0];
-                $name=$fio_array[1];
-                $patr=$fio_array[2];
-                $id_user=$fio_array[3];
-
+                $singlePagePublicationId = $_COOKIE["singlePagePublicationId"];
+              
+              
                 $sql = "SELECT * FROM publication WHERE publication.id_publ='$singlePagePublicationId'";
                 $result=mysqli_query($db,$sql);
                 $row = mysqli_fetch_object($result);
@@ -50,18 +40,37 @@ require_once "header.php";
                 $publicationName=$row->publ_name;
                 $date=$row->publ_date;
                 $link=$row->url;
-               
+                $userId=$row->login_user_id_user;
+                print("<strong class='d-inline-block mb-2 text-primary' id='publ_type'>".$publicationType."</strong>");                       
+                print("<h3 class='mb-0'>".$publicationName."</h3>");
                //Write file
                file_put_contents('../files/download-file.txt',"");
                $downloadFile=file_get_contents('../files/download-file.txt');
-               
+               if(!isset($_COOKIE['email']) OR trim($_COOKIE['email'])==''){             
+                  $sql = "SELECT * FROM login_user WHERE id_user='$userId'";
+                  $result=mysqli_query($db,$sql);
+                  $row = mysqli_fetch_object($result);
+                  $fname=$row->user_firstname;
+                   $name=$row->user_name;
+                   $patr=$row->user_patronymic;
+                   $downloadFile.=$publicationName." "."[".$publicationType."]. – Режим доступу: ".$link." – ".$date." – Загол. з екрану.";
+                $downloadFile.="\n";
+                $downloadFile.="\nТип: ".$publicationType."\nНазва: ".$publicationName."\nДата публікації: ".$date."\nПрізвище, ім'я, по батькові автора: ".$fname." ".$name." ".$patr;
+                file_put_contents('../files/download-file.txt',$downloadFile);
+               } else{
+                  $fio_str = $_COOKIE["email"];
+                   $fio_array=explode(" ",$fio_str);
+                   $fname=$fio_array[0];
+                   $name=$fio_array[1];
+                   $patr=$fio_array[2];
+                   $id_user=$fio_array[3];
                 $downloadFile.=$publicationName." "."[".$publicationType."]. – Режим доступу: ".$link." – ".$date." – Загол. з екрану.";
                 $downloadFile.="\n";
                 $downloadFile.="\nТип: ".$publicationType."\nНазва: ".$publicationName."\nДата публікації: ".$date."\nПрізвище, ім'я, по батькові автора: ".$fname." ".$name." ".$patr;
                 file_put_contents('../files/download-file.txt',$downloadFile);
-
-                print("<strong class='d-inline-block mb-2 text-primary' id='publ_type'>".$row->publ_type."</strong>");                       
-                print("<h3 class='mb-0'>".$row->publ_name."</h3>");
+                  
+               }
+                
                 
 
          switch($publicationType){
@@ -173,7 +182,7 @@ require_once "header.php";
                 <div>
 
                 <nav class="d-inline-flex mt-2 mt-md-0 ms-md-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary" id="edit" onclick="editInfo()">Редагувати</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" id="edit" onclick="window.location.href='edit.php'">Редагувати</button>
                 </nav>
                 <nav class="d-inline-flex mt-2 mt-md-0 ms-md-2">
                 <a type="button" class="btn btn-sm btn-primary" href="../files/download-file.txt" download="">Завантажити картку</a>
@@ -190,7 +199,7 @@ require_once "header.php";
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="../js/view-button.js"></script>
-<script src="../js/edit.js"></script>
+
 
 <?php
 require_once "footer.php";
