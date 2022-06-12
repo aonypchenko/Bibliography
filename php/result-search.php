@@ -17,7 +17,7 @@ require_once "header.php";
 <!-- ------------------------------------- -->
 <?php
             include("../php/db_connection.php");
-       
+            //header("Refresh:0");
                 $searchData = $_COOKIE["publicationSearch"];
                 $singlePagePublicationId = $_COOKIE["singlePagePublicationId"];
                 
@@ -27,6 +27,7 @@ require_once "header.php";
 
                 //print_r($publicationId);
                 $sql = "SELECT * FROM publication WHERE id_publ='$publicationId'";
+        
                 $result = $db->query($sql);
                 $row = $result->fetch_all(MYSQLI_ASSOC);
 
@@ -40,7 +41,6 @@ require_once "header.php";
                 print("<div class='d-flex justify-content-between align-items-center'>");
                 print(" <div class='btn-group'>");
                 print("<button type='button' class='btn btn-sm btn-outline-secondary' onclick='clcVievButton(this)' id='".$publicationId."'>Переглянути</button>");
-                print("<button type='button' class='btn btn-sm btn-outline-secondary' onclick='window.location.href=`#`'>Редагувати</button>");
                 print("</div>");
                 print("<small class='text-muted'>".$i["publ_date"]."</small>");
                 print("</div>");
@@ -49,14 +49,12 @@ require_once "header.php";
                 print("</div>");
                 }
         
-                
             ?>
 <!-- -------------------------------------- -->
 <?php
 require_once "footer.php";
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="../js/search-publication.js"></script>
 <script src="../js/view-button.js"></script>
 
 </body>

@@ -3,16 +3,16 @@
     
     if($_SERVER["REQUEST_METHOD"] == "POST") { 
         $fio_str = $_COOKIE["email"];
-        
+    
         $fio_array=explode(" ",$fio_str);
         $id_user=$fio_array[3];
-        
-        $publicationType = mysqli_real_escape_string($db,$_POST['publicationType']);
-        $publicationName = mysqli_real_escape_string($db,$_POST['publicationName']);
-        $publicationDate = mysqli_real_escape_string($db,$_POST['publicationDate']);
-        $valueFirstField = mysqli_real_escape_string($db,$_POST['valueFirstField']);
-        $valueSecondField = mysqli_real_escape_string($db,$_POST['valueSecongField']);
-        $valueThirdField = mysqli_real_escape_string($db,$_POST['valueThirdField']);
+        //mysqli_real_escape_string($db,
+        $publicationType = $_POST['publicationType'];
+        $publicationName = $_POST['publicationName'];
+        $publicationDate = $_POST['publicationDate'];
+        // $valueFirstField = mysqli_real_escape_string($db,$_POST['valueFirstField']);
+        // $valueSecondField = mysqli_real_escape_string($db,$_POST['valueSecongField']);
+        // $valueThirdField = mysqli_real_escape_string($db,$_POST['valueThirdField']);
         
         $sql = "SELECT id_publ FROM publication WHERE publ_type='$publicationType' AND publ_name='$publicationName' AND publ_date='$publicationDate'";
      

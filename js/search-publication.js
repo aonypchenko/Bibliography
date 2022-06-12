@@ -307,11 +307,13 @@ function request(value1,value2,value3){
     if(publicationType==""||publicationName==""||publicationDate==""){
         alert('Поля "Тип","Назва","Дата" повинні бути заповненими!')
     } else{
+       // console.log(value1,value2,value3)
+        
     $.ajax({
     url: '../php/search-server.php',
     type: 'POST',
     success : function (result) {
-        
+        console.log (result);
       },
       error : function (result) {
         console.log (result);
