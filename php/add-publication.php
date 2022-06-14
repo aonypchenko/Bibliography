@@ -70,6 +70,9 @@ require_once "header.php";
             <div id="div-two" class='col-sm-6'></div>
             <div id="div-three" class='col-sm-6'></div>
             <div id="div-four" class='col-sm-6'></div>
+            <div id="div-fifth" class='col-sm-6'></div>
+            <div id="div-sixth" class='col-sm-6'></div>
+            <div id="div-seventh" class='col-sm-6'></div>
             
           <hr class="my-4">
           

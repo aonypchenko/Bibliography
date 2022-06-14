@@ -1,171 +1,8 @@
-document.getElementById("type_p").onchange = function() {add_type()};
-
-function add_type(){
-    var x = document.getElementById("type_p").value;
-    
-    switch(x){
-        case "Дисертація":
-            topic("div-two");
-            level("div-three");
-            clean_html("div-four");
-            break;
-        case "Електронний ресурс":
-            clean_html("div-two")
-            clean_html("div-three")
-            break;
-        case "Книга":
-            printed_version("div-two")
-            clean_html("div-three")
-            break;
-        case "Методичні вказівки":
-            discipline("div-two");
-            clean_html("div-three")
-            break;
-        case "Монографія":
-            topic("div-two");
-            clean_html("div-three")
-            break;
-        case "Звіт":
-            discipline("div-two");
-            clean_html("div-three")
-            break;
-        case "Патент":
-            patent_duration("div-two");
-            clean_html("div-three")
-            break;
-        case "Практикум":
-            discipline("div-three");
-            cource("div-two");
-            break;
-        case "Стаття":
-            clean_html("div-two")
-            clean_html("div-three")
-            break;
-        case "Тези конференцій":
-            conference("div-two","div-four");
-            place_of_publication("div-three");
-            break;
-        case "Навчальний посібник":
-            discipline("div-two");
-            clean_html("div-three")
-            break;
-    }
-}
-
-
-    $('#search').on('click', function(){
-        searchPublication();
-    });
+$('#search').on('click', function(){
+    searchPublication();
+});
    
-    
-
-function topic(place1,place2){
-    let element="";
-    
-    element+="<label for='topic_p' class='form-label'>Тема</label>"
-    element+="<input type='text' class='form-control' id='topic_p'>"
-    element+="<div class='invalid-feedback'>"
-    element+="Valid last name is required."
-    element+="</div>"
-    document.getElementById(place1).innerHTML=element;
-}
-function level(place2){ 
-    let element2="";
-    
-    element2+="<label for='topic_p' class='form-label'>Рівень</label>"
-    element2+="<input type='text' class='form-control' id='levelDis'>"
-    element2+="<div class='invalid-feedback'>"
-    element2+="Valid last name is required."
-    element2+="</div>"
-   
-    document.getElementById(place2).innerHTML=element2;
-}
-
-function discipline(place){
-    let element="";
-   
-    element+="<label for='discipline' class='form-label'>Дисципліна</label>"
-    element+="<input type='text' class='form-control' id='discipline'>"
-    element+="<div class='invalid-feedback'>"
-    element+="Valid last name is required."
-    element+="</div>"
-  
-    document.getElementById(place).innerHTML=element;
-}
-
-function patent_duration(place){
-    let element="";
-    
-    element+="<label for='patent_duration' class='form-label'>Термін дії патента</label>"
-    element+="<input type='text' class='form-control' id='patent_duration'>"
-    element+="<div class='invalid-feedback'>"
-    element+="Valid last name is required."
-    element+="</div>"
  
-    document.getElementById(place).innerHTML=element;
-}
-
-function cource(place){
-    let element="";
-    
-    element+="<label for='cource' class='form-label'>Курс</label>"
-    element+="<input type='text' class='form-control' id='cource'>"
-    element+="<div class='invalid-feedback'>"
-    element+="Valid last name is required."
-    element+="</div>"
-   
-    document.getElementById(place).innerHTML=element;
-}
-
-function conference(place1,place2){
-    let element="";
-    element+="<label for='conference' class='form-label'>Конференція</label>"
-    element+="<input type='text' class='form-control' id='conference'>"
-    element+="<div class='invalid-feedback'>"
-    element+="Valid last name is required."
-    element+="</div>"
-    document.getElementById(place1).innerHTML=element;
-
-    let element2="";
-    element2+="<label for='conference' class='form-label'>Дата конференції</label>"
-    element2+="<input type='text' class='form-control' id='conferenceDate'>"
-    element2+="<div class='invalid-feedback'>"
-    element2+="Valid last name is required."
-    element2+="</div>"
-    document.getElementById(place2).innerHTML=element2;
-
-}
-
-function place_of_publication(place){
-    let element="";
-  
-    element+="<label for='place_of_publication' class='form-label'>Місце публікації</label>"
-    element+="<input type='text' class='form-control' id='placeOfConference'>"
-    element+="<div class='invalid-feedback'>"
-    element+="Valid last name is required."
-    element+="</div>"
-   
-    document.getElementById(place).innerHTML=element;
-    
-}
-
-function printed_version(place){
-    let element="";
-    
-    element+="<label for='cource' class='form-label'>Друкована версія</label>"
-    element+="<input type='text' class='form-control' id='printedVersion'>"
-    element+="<div class='invalid-feedback'>"
-    element+="Valid last name is required."
-    element+="</div>"
-   
-    document.getElementById(place).innerHTML=element;
-}
-
-function clean_html(place){
-    let element="";
-    element+="";
-    document.getElementById(place).innerHTML=element;
-}
 
 function searchPublication(){
         
@@ -300,6 +137,7 @@ function searchPublication(){
             break;
     }
 }
+
 function request(value1,value2,value3){
     var publicationType = document.getElementById("type_p").value;
     var publicationName = document.getElementById("Name").value;
@@ -319,7 +157,7 @@ function request(value1,value2,value3){
         console.log (result);
       },
     cache: false,
-    data: { 'publicationType':publicationType,'publicationName':publicationName,'publicationDate':publicationDate,'valueFirstField':value1,'valueSecongField':value2,'valueThirdField':value3},
+    data: { 'publicationType':publicationType,'publicationName':publicationName,'publicationDate':publicationDate},
     dataType: 'json'
     }); 
     location.href='../php/result-search.php';

@@ -12,8 +12,11 @@
       $publicationDate = mysqli_real_escape_string($db,$_POST['publicationDate']);
       $urlPublication = mysqli_real_escape_string($db,$_POST['url_p']);
       $valueFirstField = mysqli_real_escape_string($db,$_POST['valueFirstField']);
-      $valueSecondField = mysqli_real_escape_string($db,$_POST['valueSecongField']);
+      $valueSecondField = mysqli_real_escape_string($db,$_POST['valueSecondField']);
       $valueThirdField = mysqli_real_escape_string($db,$_POST['valueThirdField']);
+      $valueFourtField = mysqli_real_escape_string($db,$_POST['valueFourtField']);
+      $valueFifthField = mysqli_real_escape_string($db,$_POST['valueFifthField']);
+      $valueSixthField = mysqli_real_escape_string($db,$_POST['valueSixthField']);
       
       $sql = "SELECT publ_type FROM publication WHERE id_publ='$singlePagePublicationId'";
          $result=mysqli_query($db,$sql);
@@ -33,7 +36,7 @@
             mysqli_query($db,$sql);
              break;
          case "Книга":
-            $sql="UPDATE book SET printed_version='$valueFirstField' WHERE publication_id_publ='$singlePagePublicationId'"; 
+            $sql="UPDATE book SET printed_version='$valueFirstField', number_of_pages='$valueSecondField' WHERE publication_id_publ='$singlePagePublicationId'"; 
             mysqli_query($db,$sql);
              break;
          case "Методичні вказівки":
@@ -49,7 +52,7 @@
             mysqli_query($db,$sql);
              break;
          case "Патент":
-            $sql="UPDATE patent SET patent_duration='$valueFirstField' WHERE publication_id_publ='$singlePagePublicationId'";
+            $sql="UPDATE patent SET patent_duration='$valueFirstField',patent_number='$valueSecondField', country='$valueThirdField', patent_holder_number='$valueFourtField', date_of_application='$valueFifthField', bulletin_number='$valueSixthField' WHERE publication_id_publ='$singlePagePublicationId'";
             mysqli_query($db,$sql);
              break;
          case "Практикум":
@@ -57,10 +60,11 @@
             mysqli_query($db,$sql);
              break;
          case "Стаття":
-           
+            $sql="UPDATE article SET place_of_publication='$valueFirstField',publishing_year='$valueSecondField' WHERE publication_id_publ='$singlePagePublicationId'";
+            mysqli_query($db,$sql);
              break;
          case "Тези конференцій":
-            $sql="UPDATE conference_abstracts SET conference='$valueFirstField',conference_date='$valueSecondField',place_of_publication='$valueThirdField' WHERE publication_id_publ='$singlePagePublicationId'";
+            $sql="UPDATE conference_abstracts SET conference='$valueFirstField',conference_date='$valueSecondField',place_of_publication='$valueThirdField', city='$valueFourtField' WHERE publication_id_publ='$singlePagePublicationId'";
             mysqli_query($db,$sql);
                break;
          case "Навчальний посібник":

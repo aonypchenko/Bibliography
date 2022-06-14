@@ -94,7 +94,9 @@ require_once "header.php";
             $result=mysqli_query($db,$sql);
             $row = mysqli_fetch_object($result);
             print("<p class='card-text mb-auto'><strong>Наявність друкованої версії: </strong>".$row->printed_version."</p>");
+            print("<p class='card-text mb-auto'><strong>Кількість сторінок: </strong>".$row->number_of_pages."</p>");
             $downloadFile.="\nДрукована версія: ".$row->printed_version;
+            $downloadFile.="\nКількість сторінок: ".$row->number_of_pages;
             file_put_contents('../files/download-file.txt',$downloadFile);
             break;
          case "Методичні вказівки":
@@ -126,7 +128,17 @@ require_once "header.php";
             $result=mysqli_query($db,$sql);
             $row = mysqli_fetch_object($result);
             print("<p class='card-text mb-auto'><strong>Термін дії патенту: </strong>".$row->patent_duration."</p>");
+            print("<p class='card-text mb-auto'><strong>Номер патенту: </strong>".$row->patent_number."</p>");
+            print("<p class='card-text mb-auto'><strong>Країна: </strong>".$row->country."</p>");
+            print("<p class='card-text mb-auto'><strong>Патентовласник: </strong>".$row->patent_holder_number."</p>");
+            print("<p class='card-text mb-auto'><strong>Дата заяви: </strong>".$row->date_of_application."</p>");
+            print("<p class='card-text mb-auto'><strong>Номер бюлетеня: </strong>".$row->bulletin_number."</p>");
             $downloadFile.="\nТермін дії патенту: ".$row->patent_duration;
+            $downloadFile.="\nНомер патенту: ".$row->patent_number;
+            $downloadFile.="\nКраїна: ".$row->country;
+            $downloadFile.="\nПатентовласник: ".$row->patent_holder_number;
+            $downloadFile.="\nДата заяви: ".$row->date_of_application;
+            $downloadFile.="\nНомер бюлетеня: ".$row->bulletin_number;
             file_put_contents('../files/download-file.txt',$downloadFile);
             break;
          case "Практикум":
@@ -140,7 +152,14 @@ require_once "header.php";
             file_put_contents('../files/download-file.txt',$downloadFile);
             break;
          case "Стаття":
-            
+            $sql="SELECT * FROM article WHERE publication_id_publ='$singlePagePublicationId'";
+            $result=mysqli_query($db,$sql);
+            $row = mysqli_fetch_object($result);
+            print("<p class='card-text mb-auto'><strong>Місце публікації: </strong>".$row->place_of_publication."</p>");
+            print("<p class='card-text mb-auto'><strong>Рік видавництва: </strong>".$row->publishing_year."</p>");
+            $downloadFile.="\nМісце публікації: ".$row->place_of_publication;
+            $downloadFile.="\nРік видавництва: ".$row->publishing_year;
+            file_put_contents('../files/download-file.txt',$downloadFile);
             break;
          case "Тези конференцій":
             $sql="SELECT * FROM conference_abstracts WHERE publication_id_publ='$singlePagePublicationId'";
@@ -148,9 +167,11 @@ require_once "header.php";
             $row = mysqli_fetch_object($result);
             print("<p class='card-text mb-auto'><strong>Конференція: </strong>".$row->conference."</p>");
             print("<p class='card-text mb-auto'><strong>Дата коференції: </strong>".$row->conference_date."</p>");
+            print("<p class='card-text mb-auto'><strong>Місто: </strong>".$row->city."</p>");
             print("<strong class='d-inline-block mb-2 text-primary' id='publication-name'>Місце проведення конференції: ".$row->place_of_publication."</strong>");
             $downloadFile.="\nКонференція: ".$row->conference;
             $downloadFile.="\nДата коференції: ".$row->conference_date;
+            $downloadFile.="\nМісто: ".$row->city;
             $downloadFile.="\nМісце проведення конференції: ".$row->place_of_publication;
             file_put_contents('../files/download-file.txt',$downloadFile);
             break;
