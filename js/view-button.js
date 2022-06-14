@@ -14,7 +14,7 @@
  
     var btn_id=btn.id;
     document.cookie = "singlePagePublicationId=" + btn_id;
-
+    localStorage.setItem("idToGetType",btn_id);
     
     location.href='../php/publication-card.php';
 

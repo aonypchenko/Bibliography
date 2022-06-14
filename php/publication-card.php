@@ -43,6 +43,8 @@ require_once "header.php";
                 $userId=$row->login_user_id_user;
                 print("<strong class='d-inline-block mb-2 text-primary' id='publ_type'>".$publicationType."</strong>");                       
                 print("<h3 class='mb-0'>".$publicationName."</h3>");
+
+               //  setcookie("getPublicationType",$publicationType, time()+3600*24*30,"/");
                //Write file
                file_put_contents('../files/download-file.txt',"");
                $downloadFile=file_get_contents('../files/download-file.txt');
@@ -177,12 +179,17 @@ require_once "header.php";
             </div>    
 
            
-            <div class="d-flex justify-content-end align-items-center">
+            <div class="d-flex justify-content-between align-items-center">
                 <!-- <small class="text-muted">06.06.2022</small> -->
-                <div>
-
+                
                 <nav class="d-inline-flex mt-2 mt-md-0 ms-md-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary" id="edit" onclick="window.location.href='edit.php'">Редагувати</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" id="delete" onclick="location.href='delete.php'">Видалити</button>
+                </nav>
+                
+
+                <div>
+                <nav class="d-inline-flex mt-2 mt-md-0 ms-md-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary" id="edit" onclick="request()">Редагувати</button>
                 </nav>
                 <nav class="d-inline-flex mt-2 mt-md-0 ms-md-2">
                 <a type="button" class="btn btn-sm btn-primary" href="../files/download-file.txt" download="">Завантажити картку</a>
@@ -196,10 +203,24 @@ require_once "header.php";
     </div>
     
 </div>
+<!-- <script>
+   function getType(){
+   var type=document.getElementById("publ_type");
+   var typeValue=null;
 
+   if(type!=null){
+      typeValue=type.value;
+      console.log(typeValue);
+   }
+   document.cookie = "getPublicationType=" + type;
+
+   
+  // location.href='../php/edit.php';
+
+   }
+</script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="../js/view-button.js"></script>
-
+<script src="../js/get-type.js"></script>
 
 <?php
 require_once "footer.php";

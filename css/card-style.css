@@ -14,3 +14,8 @@
     font-family:'Times New Roman', Times, serif;
     font-weight: 500;
 }
+
+#delete{
+    border-color: rgb(254, 100, 100);
+    color: rgb(254, 100, 100);
+}

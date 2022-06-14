@@ -1,8 +1,6 @@
-document.getElementById("type_p").onchange = function() {add_type()};
-
-function add_type(){
-    var x = document.getElementById("type_p").value;
-    
+   var x = localStorage.getItem("type");
+   
+   console.log(x); 
     switch(x){
         case "Дисертація":
             topic("div-two");
@@ -50,7 +48,7 @@ function add_type(){
             clean_html("div-three")
             break;
     }
-}
+
 
 
     $('#save').on('click', function(){
@@ -169,7 +167,7 @@ function clean_html(place){
 
 function addToDB(){
         
-    var x = document.getElementById("type_p").value;
+    var x = localStorage.getItem("type");
     switch(x){
         case "Дисертація":
             var topic = document.getElementById("topic_p")
@@ -301,11 +299,11 @@ function addToDB(){
     }
 }
 function request(value1,value2,value3){
-    var publicationType = document.getElementById("type_p").value;
+    // var publicationType = document.getElementById("type_p").value;
     var publicationName = document.getElementById("Name").value;
     var publicationDate = document.getElementById("date_input").value;
     var url = document.getElementById("url_p").value;
-    if(publicationType==""||publicationName==""||publicationDate==""){
+    if(publicationName==""||publicationDate==""){
         alert('Всі поля повинні бути заповненими!')
     } else{
     $.ajax({
@@ -318,7 +316,7 @@ function request(value1,value2,value3){
         console.log (result);
       },
     cache: false,
-    data: { 'publicationType':publicationType,'publicationName':publicationName,'publicationDate':publicationDate,'url_p':url,'valueFirstField':value1,'valueSecongField':value2,'valueThirdField':value3},
+    data: { 'publicationName':publicationName,'publicationDate':publicationDate,'url_p':url,'valueFirstField':value1,'valueSecongField':value2,'valueThirdField':value3},
     dataType: 'json'
     }); 
     alert("Публікацію оновлено!")

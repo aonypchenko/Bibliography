@@ -28,25 +28,6 @@ require_once "header.php";
         <form class="needs-validation">
           <div class="row g-3">
 
-            <div class="col-md-5">
-              <label for="country" class="form-label" >Тип публікації</label>
-              <select class="form-select" id="type_p" onchange="add_type()">
-                <option disabled selected></option>
-                <option id="dissertation">Дисертація</option>
-                <option id="electronic_resource">Електронний ресурс</option>
-                <option id="book">Книга</option>
-                <option id="guidelines">Методичні вказівки</option>
-                <option id="monograph">Монографія</option>
-                <option id="report">Звіт</option>
-                <option id="patent">Патент</option>
-                <option id="workshop">Практикум</option>
-                <option id="article">Стаття</option>
-                <option id="conference_abstracts">Тези конференцій</option>
-                <option id="tutorial">Навчальний посібник</option>
-              </select>
-              <div id="errorType"></div>
-            </div>
-
             <div class="col-sm-6">
               <label for="Name" class="form-label">Назва</label>
               <input type="text" class="form-control" id="Name">

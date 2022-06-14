@@ -12,9 +12,10 @@
       $patronymic = mysqli_real_escape_string($db,$_POST['patr']);
       
       $pass = md5($mypassword);
-      
+
       $sql = "INSERT INTO login_user (login_email,password,user_firstname,user_name,user_patronymic,role) VALUES ('$log','$pass','$fname','$name','$patronymic',1)";
       $result = mysqli_query($db,$sql);
+      
     //   $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
     //   $count = mysqli_num_rows($result);
       		

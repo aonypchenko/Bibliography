@@ -7,7 +7,7 @@
       $fio_array=explode(" ",$fio_str);
       $id_user=$fio_array[3];
       $singlePagePublicationId = $_COOKIE["singlePagePublicationId"];
-      $publicationType = mysqli_real_escape_string($db,$_POST['publicationType']);
+      
       $publicationName = mysqli_real_escape_string($db,$_POST['publicationName']);
       $publicationDate = mysqli_real_escape_string($db,$_POST['publicationDate']);
       $urlPublication = mysqli_real_escape_string($db,$_POST['url_p']);
@@ -15,7 +15,12 @@
       $valueSecondField = mysqli_real_escape_string($db,$_POST['valueSecongField']);
       $valueThirdField = mysqli_real_escape_string($db,$_POST['valueThirdField']);
       
-      $sql1 = "UPDATE publication SET publ_type='$publicationType',publ_name=' $publicationName',publ_date='$publicationDate',`url`='$urlPublication' WHERE id_publ='$singlePagePublicationId'";
+      $sql = "SELECT publ_type FROM publication WHERE id_publ='$singlePagePublicationId'";
+         $result=mysqli_query($db,$sql);
+         $row = mysqli_fetch_object($result);
+         $publicationType=$row->publ_type;
+
+      $sql1 = "UPDATE publication SET publ_name='$publicationName',publ_date='$publicationDate',`url`='$urlPublication' WHERE id_publ='$singlePagePublicationId'";
       mysqli_query($db,$sql1);
 
          switch($publicationType){
