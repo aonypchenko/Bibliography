@@ -154,7 +154,8 @@ function request(value1,value2,value3){
         console.log (result);
       },
       error : function (result) {
-        console.log (result);
+        alert("Публікацію не знайдено!")
+        location.reload();
       },
     cache: false,
     data: { 'publicationType':publicationType,'publicationName':publicationName,'publicationDate':publicationDate},

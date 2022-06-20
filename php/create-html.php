@@ -14,22 +14,21 @@ $fio_str = $_COOKIE["email"];
     $row = $result->fetch_all(MYSQLI_ASSOC);
     // print_r($row);
     
-    foreach($row as $i){
-        print("<div class='col'>");
-        print("<div class='card shadow-sm'>");
-        print("<div class='card-body'>");
-        print("<h5 class='publication-name'>".$i["publ_name"]."</h5>");
-        print("<small class='mb-1 text-muted'>".$i["publ_type"]."</small>");
-        print("<div class='d-flex justify-content-between align-items-center'>");
-        print(" <div class='btn-group'>");
-        print("<button type='button' class='btn btn-sm btn-outline-secondary' onclick='clcVievButton(this)' id='".$i["id_publ"]."'>Переглянути</button>");
-        print("<button type='button' class='btn btn-sm btn-outline-secondary' onclick='window.location.href=`#`'>Редагувати</button>");
-        print("</div>");
-        print("<small class='text-muted'>".$i["publ_date"]."</small>");
-        print("</div>");
-        print("</div>");
-        print("</div>");
-        print("</div>"); 
-    }
+foreach($row as $i){
+print("<div class='col'>");
+print("<div class='card shadow-sm'>");
+print("<div class='card-body'>");
+print("<h5 class='publication-name'>".$i["publ_name"]."</h5>");
+print("<small class='mb-1 text-muted'>".$i["publ_type"]."</small>");
+print("<div class='d-flex justify-content-between align-items-center'>");
+print(" <div class='btn-group'>");
+print("<button type='button' class='btn btn-sm btn-outline-secondary' onclick='clcVievButton(this)' id='".$i["id_publ"]."'>Переглянути</button>");
+print("</div>");
+print("<small class='text-muted'>".$i["publ_date"]."</small>");
+print("</div>");
+print("</div>");
+print("</div>");
+print("</div>"); 
+}
 
     ?>

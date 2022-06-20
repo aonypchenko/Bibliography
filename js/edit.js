@@ -494,7 +494,7 @@ data: { 'publicationName':publicationName,'publicationDate':publicationDate,'url
 dataType: 'json'
 }); 
 alert("Публікацію успішно оновлено!")
-location.reload()
+location.href("../php/my-publication.php")
 //console.log(value1,value2,value3,value4,value5,value6);
 
 }

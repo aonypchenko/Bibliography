@@ -16,40 +16,34 @@ require_once "header.php";
 ?>
 <!-- ------------------------------------- -->
 <?php
-            include("../php/db_connection.php");
-            //header("Refresh:0");
-                $searchData = $_COOKIE["publicationSearch"];
-                $singlePagePublicationId = $_COOKIE["singlePagePublicationId"];
-                
-                $searchDataValue=explode(" ",$searchData);
-                
-                $publicationId=$searchDataValue[0];
+    include("../php/db_connection.php");
+        $searchData = $_COOKIE["publicationSearch"];
+        $singlePagePublicationId = $_COOKIE["singlePagePublicationId"];
+        $searchDataValue=explode(" ",$searchData);
+        $publicationId=$searchDataValue[0];
 
-                //print_r($publicationId);
-                $sql = "SELECT * FROM publication WHERE id_publ='$publicationId'";
-        
-                $result = $db->query($sql);
-                $row = $result->fetch_all(MYSQLI_ASSOC);
+        $sql = "SELECT * FROM publication WHERE id_publ='$publicationId'";
 
-                
-                foreach($row as $i){
-                print("<div class='col'>");
-                print("<div class='card shadow-sm'>");
-                print("<div class='card-body'>");
-                print("<p class='publication-name'>".$i["publ_type"]."</p>");
-                print("<small class='mb-1 text-muted'>".$i["publ_name"]."</small>");
-                print("<div class='d-flex justify-content-between align-items-center'>");
-                print(" <div class='btn-group'>");
-                print("<button type='button' class='btn btn-sm btn-outline-secondary' onclick='clcVievButton(this)' id='".$publicationId."'>Переглянути</button>");
-                print("</div>");
-                print("<small class='text-muted'>".$i["publ_date"]."</small>");
-                print("</div>");
-                print("</div>");
-                print("</div>");
-                print("</div>");
-                }
-        
-            ?>
+        $result = $db->query($sql);
+        $row = $result->fetch_all(MYSQLI_ASSOC);
+
+        foreach($row as $i){
+        print("<div class='col'>");
+        print("<div class='card shadow-sm'>");
+        print("<div class='card-body'>");
+        print("<p class='publication-name'>".$i["publ_type"]."</p>");
+        print("<small class='mb-1 text-muted'>".$i["publ_name"]."</small>");
+        print("<div class='d-flex justify-content-between align-items-center'>");
+        print(" <div class='btn-group'>");
+        print("<button type='button' class='btn btn-sm btn-outline-secondary' onclick='clcVievButton(this)' id='".$publicationId."'>Переглянути</button>");
+        print("</div>");
+        print("<small class='text-muted'>".$i["publ_date"]."</small>");
+        print("</div>");
+        print("</div>");
+        print("</div>");
+        print("</div>");
+        }
+?>
 <!-- -------------------------------------- -->
 <?php
 require_once "footer.php";

@@ -76,7 +76,7 @@ require_once "header.php";
             
           <hr class="my-4">
           
-          <input class="w-100 btn btn-primary btn-lg" type="button" id="save" value="Save"/>
+          <input class="w-100 btn btn-primary btn-lg" type="button" id="save" value="Зберегти"/>
         </form>
       </div>
     </div>

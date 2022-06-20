@@ -22,7 +22,7 @@ if(!isset($_COOKIE['email']) OR trim($_COOKIE['email'])==''){
 require_once "header.php";
 ?>
 <!-- ------------------------------------- -->
-<div>
+<!-- <div>
     <div class="filter_publ">
             <div class="col-md-5">
               <select class="form-select" id="filter_type" required="">
@@ -39,14 +39,12 @@ require_once "header.php";
                 <option >Тези конференцій</option>
                 <option >Навчальний посібник</option>
               </select>
-              <!-- <div class="invalid-feedback">
-                Please select a valid country.
-              </div> -->
+             
             </div>
 
             <div class="col-sm-6">
               <input type="text" class="form-control" id="filter_name" placeholder="Назва" value="" required="">
-              <!-- <div class="invalid-feedback">Valid first name is required.</div> -->
+              
             </div>
 
             <div class="date_publ">
@@ -57,7 +55,7 @@ require_once "header.php";
             </form>
             </div>
     </div>
-</div>
+</div> -->
 <div class="container">
     <form>
     <div class='row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3'>

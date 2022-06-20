@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -29,9 +28,7 @@ require_once "header.php";
             <?php
             include("../php/db_connection.php");
             
-                
                 $singlePagePublicationId = $_COOKIE["singlePagePublicationId"];
-              
               
                 $sql = "SELECT * FROM publication WHERE publication.id_publ='$singlePagePublicationId'";
                 $result=mysqli_query($db,$sql);
@@ -44,8 +41,6 @@ require_once "header.php";
                 print("<strong class='d-inline-block mb-2 text-primary' id='publ_type'>".$publicationType."</strong>");                       
                 print("<h3 class='mb-0'>".$publicationName."</h3>");
 
-               //  setcookie("getPublicationType",$publicationType, time()+3600*24*30,"/");
-               //Write file
                file_put_contents('../files/download-file.txt',"");
                $downloadFile=file_get_contents('../files/download-file.txt');
                if(!isset($_COOKIE['email']) OR trim($_COOKIE['email'])==''){             
@@ -202,20 +197,27 @@ require_once "header.php";
            
             <div class="d-flex justify-content-between align-items-center">
                 <!-- <small class="text-muted">06.06.2022</small> -->
-                
+               <?php if(!isset($_COOKIE["email"]) OR trim($_COOKIE["email"])==''): ?>
+                  <nav class="d-inline-flex mt-2 mt-md-0 ms-md-2">
+               <a type="button" class="btn btn-sm btn-primary" href="../files/download-file.txt" download="">Завантажити картку</a>
+               </nav>
+               <?php
+               elseif(isset($_COOKIE["email"]) OR trim($_COOKIE["email"])!=''):
+               ?>
                 <nav class="d-inline-flex mt-2 mt-md-0 ms-md-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary" id="delete" onclick="location.href='delete.php'">Видалити</button>
-                </nav>
-                
-
-                <div>
-                <nav class="d-inline-flex mt-2 mt-md-0 ms-md-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary" id="edit" onclick="request()">Редагувати</button>
-                </nav>
-                <nav class="d-inline-flex mt-2 mt-md-0 ms-md-2">
-                <a type="button" class="btn btn-sm btn-primary" href="../files/download-file.txt" download="">Завантажити картку</a>
-                </nav>
-                </div>
+               <button type="button" class="btn btn-sm btn-outline-secondary" id="delete" onclick="location.href='delete.php'">Видалити</button>
+               </nav>
+   
+               <div>
+               <nav class="d-inline-flex mt-2 mt-md-0 ms-md-2">
+               <button type="button" class="btn btn-sm btn-outline-secondary" id="edit" onclick="requestType()">Редагувати</button>
+               </nav>
+               <nav class="d-inline-flex mt-2 mt-md-0 ms-md-2">
+               <a type="button" class="btn btn-sm btn-primary" href="../files/download-file.txt" download="">Завантажити картку</a>
+               </nav>
+               
+               <?php endif;?>
+               </div>
             </div>
             </div>
         </div>

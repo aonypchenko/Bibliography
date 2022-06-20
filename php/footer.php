@@ -5,6 +5,6 @@
       <li class="nav-item"><a href="index.php" class="nav-link px-2 text-muted">Головна</a></li>
       <li class="nav-item"><a href="html-publ-search.php" class="nav-link px-2 text-muted">Пошук</a></li>
     </ul>
-    <p class="text-center text-muted">© 2021 by ONYX-SOFT</p>
+    <p class="text-center text-muted">© 2022 by ONYX-SOFT</p>
   </footer>
 </div>

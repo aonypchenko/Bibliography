@@ -18,10 +18,9 @@ if(!isset($_COOKIE['email']) OR trim($_COOKIE['email'])==''):
   <nav class="d-inline-flex mt-2 mt-md-0 ms-md-2">
   <button type="button" class="btn btn-primary" onclick="window.location.href='../sign_in/login.php'">Увійти</button>
   </nav>
-
-  <?php
-  elseif(isset($_COOKIE['email']) OR trim($_COOKIE['email'])!=''):
-  ?>
+<?php
+elseif(isset($_COOKIE['email']) OR trim($_COOKIE['email'])!=''):
+?>
   <nav class="d-inline-flex mt-2 mt-md-0 ms-md-2">
   <button type="button" name="exit_user" class="btn btn-light me-md-3" onclick="window.location.href='add-publication.php'">Додати публікацію</button>
   </nav>
@@ -33,6 +32,6 @@ if(!isset($_COOKIE['email']) OR trim($_COOKIE['email'])==''):
     <input id="logout" class="btn btn-primary" type="submit" value="Вийти"/>
   </form>
   </nav>
-  <?php endif;?>
+<?php endif;?>
 <!--  -->
 </div>

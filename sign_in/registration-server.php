@@ -16,16 +16,5 @@
       $sql = "INSERT INTO login_user (login_email,password,user_firstname,user_name,user_patronymic,role) VALUES ('$log','$pass','$fname','$name','$patronymic',1)";
       $result = mysqli_query($db,$sql);
       
-    //   $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-    //   $count = mysqli_num_rows($result);
-      		
-    //   if($count == 1) {
-    //     //echo $myusername;
-    //      setcookie("email",$log, time()+3600*24*30,"/"); 
-    //      header("location: ../php/index.php");
-    //   }else {
-    //      echo "Your Login Name or Password is invalid";
-    //      $error = "Your Login Name or Password is invalid";
-    //   }
    }
 ?>

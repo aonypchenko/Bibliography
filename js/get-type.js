@@ -1,6 +1,6 @@
 var xhr=new XMLHttpRequest();
 
-function request(){
+function requestType(){
     
     var idPubl=localStorage.getItem("idToGetType");
     xhr.onload=getResponce;
